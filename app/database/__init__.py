@@ -124,6 +124,7 @@ def review_formatter(results: tuple):
         out["body"].append(res_dict)
 
     return out
+
 #adding comment to review table 
 def create_Review(p_id, body):
     value_tuple = (int(p_id), body)
@@ -146,7 +147,8 @@ def read_Review(pid):
         FROM reviews
         WHERE idProduct = ? 
         """
-    cursor = get_db().execute(query, (pid,))
+    cursor = get_db().execute(query, (pid))
     results = cursor.fetchall()
     cursor.close()
     return review_formatter(results)
+

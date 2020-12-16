@@ -13,31 +13,33 @@
 
         <!-- Review Loop -->
 
-        <h2>Product Review for TODO DISPLAY PRODUCT HERE</h2>
+        <h2>Product Review: {{ name }}</h2>
         <!-- Active Table DB -->
-        <table id="trial" class="table table-dark">
+        <table id="trial" class="table">
             <thead class="thead-dark">
                 <tr>
                 <th scope="col">Product Id</th>
+                <th scope="col">Product</th>
                 <th scope="col">Review Comment</th>
                 <th scope="col">Comment Id</th>
                 </tr>
             </thead>
             <tbody>
-            <!-- Jinja for loop -->
-            {% for review in p_Reviews %} 
+                <!-- Jinja for loop -->
+                {% for review in reviews %} 
 
-                <!-- Build product row output -->
-                <tr>
-                    <th scope="row">{{ p_Reviews["idProduct"] }}</th>
-                    <td>{{ p_Reviews["comment"] }}</td>
-                    <td>{{ p_Reviews["idReview"] }}</td>
-                </tr>
-            {% endfor %}
+                    <!-- Build product row output -->
+                    <tr style="background-color:#c2bbbb;">
+                        <th scope="row">{{ review["prodId"] }}</th>
+                        <td>{{ name }}</td>
+                        <td>{{ review["review"] }}</td>
+                        <td>{{ review["id"] }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
 
-        <button><a href="/products" >Return</a></button>
+        <button><a href="/products" >Close</a></button>
 
         <!-- Active Table DB -->
         <table id="trial" class="table table-dark">

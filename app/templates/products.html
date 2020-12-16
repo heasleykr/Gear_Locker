@@ -51,7 +51,7 @@
                                 <td>{{ product["description"] }}</td>
                                 <td>{{ product["unique_tag"] }}</td>
                                 <td><button><a href="/product_review_form/{{ product['name'] }}/{{product['id']}}">Leave Review</a></button></td>
-                                <td><button><a href="products/review/{{product['id']}}" >Display Reviews</a></button></td>
+                                <td><button><a href="products/review/{{ product['name'] }}/{{product['id']}}" >Display Reviews</a></button></td>
                                 <td><button><a href="products/{{product['id']}}/1" >Delete</a></button></td>
                             </tr>
                         

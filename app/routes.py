@@ -90,8 +90,9 @@ def delete_product(pid, value):
     return redirect(url_for('get_all_products')) 
     
 #ROUTE TO DISPLAY PRODUCT REVIEWS       
-@app.route("/products/review/<pid>", methods=["GET"])
-def read_review(pid):
+@app.route("/products/review/<name>/<pid>", methods=["GET"])
+def read_review(name, pid):
+    if request.method == "GET":
         #get products
         out = scan() 
         out["ok"] = True
@@ -102,9 +103,10 @@ def read_review(pid):
         review_out["ok"] = True
         review_out["message"] = "Success"
 
+        prod_Name = name
 
          # return out
-        return render_template("product_review.html", products=out["body"], p_Reviews=review_out["body"])
+        return render_template("product_review.html", products=out["body"], reviews=review_out["body"], name=prod_Name)
 
 
 #the term is a 'View Route' because it returns HTML content
