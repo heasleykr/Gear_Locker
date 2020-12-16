@@ -1,0 +1,46 @@
+<!-- Jinga2 Dynamic content for our base.html page -->
+
+{% extends "bootstrap/base.html" %}
+{% block title %} Sports Gear Outlet {% endblock %}
+
+<html>
+  <head>
+   
+    <link rel= "stylesheet" type="text/css" href= "{{ url_for('static', filename='styles/products.css') }}" />
+    <title>Flask Sports Gear</title>
+
+  </head>
+  <body>
+{% block navbar%}
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collpase">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-collpase collapse">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/products">Sports Gear</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="product_form">Sell/Add Your Gear</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled" href="/aboutme" tabindex="-1" aria-disabled="true">About Sports Gear Outlet</a>
+                        </li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}  

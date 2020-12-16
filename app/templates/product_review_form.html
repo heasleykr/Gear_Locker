@@ -1,0 +1,25 @@
+<!-- Our dynamic Jinga2 product_review.html -->
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <h1>Product Review</h1>
+    <hr>
+    <h2>Leave feedback on products for our team</h2>
+
+    <div class="formwrapper">
+        <h2 class="title">Product Review: {{ form.id.label }}</h2>
+        <form method="POST">
+            <div class="form-field">
+                {{ form.id.label }}
+                {{ form.id }}
+            </div>
+            <div class="form-field">
+                {{ form.body.label }}
+                {{ form.body }}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+{% endblock %}

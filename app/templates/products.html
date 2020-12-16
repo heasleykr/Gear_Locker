@@ -1,0 +1,112 @@
+<!-- Our dynamic Jinga2 products.html -->
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <body id="productsMain">
+        <h1>Gear Locker</h1>
+        <h3>Items are color-coded by quantity</h3>
+        <p>Have a look around and take what you need off the shelves to up your game.
+        <hr>
+        </p>
+        <!-- Active Table DB -->
+        <table id="trial" class="table table-dark">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Gear</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Classification</th>
+                <th scope="col">Product Reviews</th>
+                <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!-- Jinja for loop -->
+                {% for product in products %} 
+                    <!-- determine active product -->
+                    {% if product["active"] %}
+                        
+                        {% set color = '' %}
+                        <!-- determine row color -->
+                        {% if product["quantity"] <= 100 %}
+                            {% set color = 'background-color:red;' %}
+                        {% elif product["quantity"] <= 500 %}
+                            {% set color = 'background-color:yellow;' %}
+                        {% else %}
+                            {% set color = '' %}
+                        {% endif %}
+
+                                <!-- Build product row output -->
+                            <tr style='{{ color }}'>
+                                <th scope="row" id="prod_id">{{ product["id"] }}</th>
+                                <td>{{ product["name"] }}</td>
+                                <td>{{ product["category"] }}</td>
+                                <td>{{ product["quantity"] }}</td>
+                                <td>{{ product["price"] }}</td>
+                                <td>{{ product["description"] }}</td>
+                                <td>{{ product["unique_tag"] }}</td>
+                                <td><button><a href="/product_review_form/{{ product['name'] }}/{{product['id']}}">Leave Review</a></button></td>
+                                <td><button><a href="products/review/{{product['id']}}" >Display Reviews</a></button></td>
+                                <td><button><a href="products/{{product['id']}}/1" >Delete</a></button></td>
+                            </tr>
+                        
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- DeActivated 'Deleted' DB Table -->
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Gear</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Classification</th>
+                <th scope="col">Un-Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!-- Jinja for loop -->
+                {% for product in products %} 
+                    <!-- determine deactive product -->
+                    {% if product["active"] == False %}
+
+                        <!-- determine row color -->
+                        {% set color = '' %}
+                        <!-- determine row color -->
+                        {% if product["quantity"] <= 100 %}
+                            {% set color = 'background-color:red;' %}
+                        {% elif product["quantity"] <= 500 %}
+                            {% set color = 'background-color:yellow;' %}
+                        {% else %}
+                            {% set color = '' %}
+                        {% endif %}
+
+                                <!-- Build product row output -->
+                        <tr style='{{ color }}'>
+                            <th scope="row">{{ product["id"] }}</th>
+                            <td>{{ product["name"] }}</td>
+                            <td>{{ product["category"] }}</td>
+                            <td>{{ product["quantity"] }}</td>
+                            <td>{{ product["price"] }}</td>
+                            <td>{{ product["description"] }}</td>
+                            <td>{{ product["unique_tag"] }}</td>
+                            <td><button><a href="products/{{product['id']}}/0" >Recover Gear</a></button></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</div>
+{% endblock %}
+

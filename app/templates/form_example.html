@@ -1,0 +1,14 @@
+<!-- Our dynamic Jinga2 error.html -->
+<!-- Won't usually display in 'debug mode' for Flask b/c Flask debugg will take over! -->
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <h1>Add Gear to Our Locker!</h1>
+    <hr>
+    <form method="POST">
+        {{ wtf.quick_form(form) }}
+    </form>
+</div>
+{% endblock %}
